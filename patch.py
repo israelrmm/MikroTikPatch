@@ -247,7 +247,9 @@ def patch_squashfs(path,key_dict):
                 data = open(file,'rb').read()
                 for old_public_key,new_public_key in key_dict.items():
                     if old_public_key in data:
-                        print(f'{file} public key patched {old_public_key[:16].hex().upper()}...')
+                        #print(f'{file} public key patched {old_public_key[:16].hex().upper()}...')
+                        print(f'{file} public key patched OLD {old_public_key[:95].hex().upper()}')
+                        print(f'{file} public key patched NEW {new_public_key[:95].hex().upper()}')
                         data = data.replace(old_public_key,new_public_key)
                         open(file,'wb').write(data)
                 data = open(file,'rb').read()
