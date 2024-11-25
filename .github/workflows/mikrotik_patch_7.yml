@@ -103,15 +103,15 @@ jobs:
       run: |
         sudo mkdir -p ./option-root/bin/
         if [ "${{ matrix.arch }}" == "x86" ]; then
-          sudo cp busybox/busybox_x86 ./option-root/bin/busybox
-          sudo chmod +x ./option-root/bin/busybox
-          sudo cp keygen/keygen_x86 ./option-root/bin/keygen
-          sudo chmod +x ./option-root/bin/keygen
+          #sudo cp busybox/busybox_x86 ./option-root/bin/busybox
+          #sudo chmod +x ./option-root/bin/busybox
+          #sudo cp keygen/keygen_x86 ./option-root/bin/keygen
+          #sudo chmod +x ./option-root/bin/keygen
         elif [ "${{ matrix.arch }}" == "arm64" ]; then
-          sudo cp busybox/busybox_aarch64 ./option-root/bin/busybox
-          sudo chmod +x ./option-root/bin/busybox
-          sudo cp keygen/keygen_aarch64 ./option-root/bin/keygen
-          sudo chmod +x ./option-root/bin/keygen
+          #sudo cp busybox/busybox_aarch64 ./option-root/bin/busybox
+          #sudo chmod +x ./option-root/bin/busybox
+          #sudo cp keygen/keygen_aarch64 ./option-root/bin/keygen
+          #sudo chmod +x ./option-root/bin/keygen
         fi
         sudo chmod +x ./busybox/busybox_x86
         COMMANDS=$(./busybox/busybox_x86 --list)
@@ -191,10 +191,10 @@ jobs:
             sudo -E python3 npk.py sign $file $file
         done
         sudo cp routeros-$LATEST_VERSION$ARCH.npk ./new_iso/
-        sudo -E python3 npk.py create ./new_iso/gps-$LATEST_VERSION$ARCH.npk ./option-$LATEST_VERSION$ARCH.npk option ./option.sfs -desc="busybox"
-        sudo cp option-$LATEST_VERSION$ARCH.npk ./new_iso/
-        sudo -E python3 npk.py create ./new_iso/gps-$LATEST_VERSION$ARCH.npk ./python3-$LATEST_VERSION$ARCH.npk python3 ./python3.sfs -desc="python 3.11.9"
-        sudo cp python3-$LATEST_VERSION$ARCH.npk ./new_iso/
+        #sudo -E python3 npk.py create ./new_iso/gps-$LATEST_VERSION$ARCH.npk ./option-$LATEST_VERSION$ARCH.npk option ./option.sfs -desc="busybox"
+        #sudo cp option-$LATEST_VERSION$ARCH.npk ./new_iso/
+        #sudo -E python3 npk.py create ./new_iso/gps-$LATEST_VERSION$ARCH.npk ./python3-$LATEST_VERSION$ARCH.npk python3 ./python3.sfs -desc="python 3.11.9"
+        #sudo cp python3-$LATEST_VERSION$ARCH.npk ./new_iso/
         sudo mkdir ./efiboot
         sudo mount -o loop ./new_iso/efiboot.img ./efiboot
         if [ "${{ matrix.arch }}" == "x86" ]; then
@@ -350,7 +350,7 @@ jobs:
         sudo umount /dev/nbd0p1
         sudo mount  /dev/nbd0p2 ./img/routeros/
         sudo mkdir -p ./img/routeros/{var/pdb/{system,option},boot,rw}
-        sudo cp ./all_packages/option-$LATEST_VERSION$ARCH.npk ./img/routeros/var/pdb/option/image
+        #sudo cp ./all_packages/option-$LATEST_VERSION$ARCH.npk ./img/routeros/var/pdb/option/image
         sudo cp ./all_packages/routeros-$LATEST_VERSION$ARCH.npk ./img/routeros/var/pdb/system/image
         sudo umount /dev/nbd0p2
         sudo rm -rf ./img
